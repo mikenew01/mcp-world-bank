@@ -1,11 +1,10 @@
-package com.github.maikoncanuto.domain.dto.country;
+package com.github.maikoncanuto.domain.dto.worldbank.indicator;
 
 import com.github.maikoncanuto.domain.dto.BaseDTO;
 
-public class RegionDTO implements BaseDTO {
+public class IndicatorItemWorldBankDTO implements BaseDTO {
 
     private String id;
-    private String iso2code;
     private String value;
 
     public String getId() {
@@ -14,14 +13,6 @@ public class RegionDTO implements BaseDTO {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getIso2code() {
-        return iso2code;
-    }
-
-    public void setIso2code(String iso2code) {
-        this.iso2code = iso2code;
     }
 
     public String getValue() {

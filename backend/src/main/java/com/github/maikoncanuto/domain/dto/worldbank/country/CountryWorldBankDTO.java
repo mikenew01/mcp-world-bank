@@ -1,4 +1,4 @@
-package com.github.maikoncanuto.domain.dto.country;
+package com.github.maikoncanuto.domain.dto.worldbank.country;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.maikoncanuto.domain.dto.BaseDTO;
@@ -8,15 +8,15 @@ public class CountryWorldBankDTO implements BaseDTO {
     private String id;
     private String iso2Code;
     private String name;
-    private RegionDTO region;
-    private RegionDTO incomeLevel;
-    private RegionDTO lendingType;
+    private RegionItemWorldBankDTO region;
+    private RegionItemWorldBankDTO incomeLevel;
+    private RegionItemWorldBankDTO lendingType;
     private String capitalCity;
     private String longitude;
     private String latitude;
 
     @JsonProperty("adminregion")
-    private RegionDTO adminRegion;
+    private RegionItemWorldBankDTO adminRegion;
 
     public String getId() {
         return id;
@@ -42,35 +42,35 @@ public class CountryWorldBankDTO implements BaseDTO {
         this.name = name;
     }
 
-    public RegionDTO getRegion() {
+    public RegionItemWorldBankDTO getRegion() {
         return region;
     }
 
-    public void setRegion(RegionDTO region) {
+    public void setRegion(RegionItemWorldBankDTO region) {
         this.region = region;
     }
 
-    public RegionDTO getAdminRegion() {
+    public RegionItemWorldBankDTO getAdminRegion() {
         return adminRegion;
     }
 
-    public void setAdminRegion(RegionDTO adminRegion) {
+    public void setAdminRegion(RegionItemWorldBankDTO adminRegion) {
         this.adminRegion = adminRegion;
     }
 
-    public RegionDTO getIncomeLevel() {
+    public RegionItemWorldBankDTO getIncomeLevel() {
         return incomeLevel;
     }
 
-    public void setIncomeLevel(RegionDTO incomeLevel) {
+    public void setIncomeLevel(RegionItemWorldBankDTO incomeLevel) {
         this.incomeLevel = incomeLevel;
     }
 
-    public RegionDTO getLendingType() {
+    public RegionItemWorldBankDTO getLendingType() {
         return lendingType;
     }
 
-    public void setLendingType(RegionDTO lendingType) {
+    public void setLendingType(RegionItemWorldBankDTO lendingType) {
         this.lendingType = lendingType;
     }
 

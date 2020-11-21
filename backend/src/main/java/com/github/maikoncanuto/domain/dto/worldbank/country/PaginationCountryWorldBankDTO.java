@@ -1,9 +1,9 @@
-package com.github.maikoncanuto.domain.dto.country;
+package com.github.maikoncanuto.domain.dto.worldbank.country;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.maikoncanuto.domain.dto.BaseDTO;
 
-public class PaginationCountryDTO implements BaseDTO {
+public class PaginationCountryWorldBankDTO implements BaseDTO {
 
     private Integer page;
 

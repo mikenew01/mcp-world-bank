@@ -1,11 +1,11 @@
-package com.github.maikoncanuto.domain.dto.indicator;
+package com.github.maikoncanuto.domain.dto.worldbank.indicator;
 
 import com.github.maikoncanuto.domain.dto.BaseDTO;
 
 public class IndicatorWorldBankDTO implements BaseDTO {
 
-    private IndicatorDTO indicator;
-    private IndicatorDTO country;
+    private IndicatorItemWorldBankDTO indicator;
+    private IndicatorItemWorldBankDTO country;
     private String countryIso3Code;
     private String date;
     private Object value;
@@ -13,19 +13,19 @@ public class IndicatorWorldBankDTO implements BaseDTO {
     private String obsStatus;
     private Integer decimal;
 
-    public IndicatorDTO getIndicator() {
+    public IndicatorItemWorldBankDTO getIndicator() {
         return indicator;
     }
 
-    public void setIndicator(IndicatorDTO indicator) {
+    public void setIndicator(IndicatorItemWorldBankDTO indicator) {
         this.indicator = indicator;
     }
 
-    public IndicatorDTO getCountry() {
+    public IndicatorItemWorldBankDTO getCountry() {
         return country;
     }
 
-    public void setCountry(IndicatorDTO country) {
+    public void setCountry(IndicatorItemWorldBankDTO country) {
         this.country = country;
     }
 

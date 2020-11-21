@@ -1,6 +1,31 @@
 version: '3.7'
 
 services:
+  worldbank-backend:
+    build:
+      context: ./backend/
+      dockerfile: src/main/docker/Dockerfile.jvm
+    container_name: bank-backend
+    restart: always
+    networks:
+      - bank_networking
+    ports:
+      - '8080:8080'
+    expose:
+      - '8080'
+      - '6831'
+      - '9090'
+      - '9200'
+      - '9300'
+      - '9600'
+      - '5000'
+      - '12201'
+      - '16686'
+      - '8180'
+      - '8280'
+      - '8380'
+      - '3000'
+
   jaeger:
     image: jaegertracing/all-in-one:latest
     container_name: bank-tracing

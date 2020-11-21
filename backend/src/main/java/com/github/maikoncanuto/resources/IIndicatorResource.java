@@ -12,14 +12,14 @@ import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Path("/indicators")
+@Path("/indicadores")
 @Consumes(APPLICATION_JSON)
 @Produces(APPLICATION_JSON)
-@Tag(name = "Indicators", description = "Endpoints para acessar informações de indicadores na base dados do World Bank")
+@Tag(name = "Indicadores", description = "Endpoints para acessar informações de indicadores na base dados do World Bank")
 public interface IIndicatorResource {
 
     @GET
-    @Path("/{id}")
+    @Path("/{codigoPais}")
     @Timeout
     @Retry
     @Operation(
@@ -29,6 +29,6 @@ public interface IIndicatorResource {
     )
     @APIResponse(name = "OK", responseCode = "200", description = "Requisição completada com sucesso")
     @APIResponse(name = "Internal Server Error", responseCode = "500", description = "Ocorreu um problema interno no servidor")
-    Response findIndicatorsByIdInWorldBank(@PathParam("id") @NotNull final String id);
+    Response findIndicatorsByIdInWorldBank(@PathParam("codigoPais") @NotNull final String codigoPais);
 
 }

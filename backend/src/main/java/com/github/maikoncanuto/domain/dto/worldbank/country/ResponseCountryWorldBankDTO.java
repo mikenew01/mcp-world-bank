@@ -1,23 +1,22 @@
-package com.github.maikoncanuto.domain.dto;
+package com.github.maikoncanuto.domain.dto.worldbank.country;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.github.maikoncanuto.domain.deserialize.ResponseCountryDeserialize;
-import com.github.maikoncanuto.domain.dto.country.CountryWorldBankDTO;
-import com.github.maikoncanuto.domain.dto.country.PaginationCountryDTO;
+import com.github.maikoncanuto.domain.dto.BaseDTO;
 
 import java.util.List;
 
 @JsonDeserialize(using = ResponseCountryDeserialize.class)
-public class ResponseCountryDTO implements BaseDTO {
+public class ResponseCountryWorldBankDTO implements BaseDTO {
 
-    private PaginationCountryDTO pagination;
+    private PaginationCountryWorldBankDTO pagination;
     private List<CountryWorldBankDTO> countries;
 
-    public PaginationCountryDTO getPagination() {
+    public PaginationCountryWorldBankDTO getPagination() {
         return pagination;
     }
 
-    public void setPagination(PaginationCountryDTO pagination) {
+    public void setPagination(PaginationCountryWorldBankDTO pagination) {
         this.pagination = pagination;
     }
 

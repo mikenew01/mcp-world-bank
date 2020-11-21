@@ -6,9 +6,9 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.maikoncanuto.domain.dto.country.CountryWorldBankDTO;
-import com.github.maikoncanuto.domain.dto.country.PaginationCountryDTO;
-import com.github.maikoncanuto.domain.dto.ResponseCountryDTO;
+import com.github.maikoncanuto.domain.dto.worldbank.country.CountryWorldBankDTO;
+import com.github.maikoncanuto.domain.dto.worldbank.country.PaginationCountryWorldBankDTO;
+import com.github.maikoncanuto.domain.dto.worldbank.country.ResponseCountryWorldBankDTO;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
@@ -17,12 +17,12 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Stream.of;
 
-public class ResponseCountryDeserialize extends JsonDeserializer<ResponseCountryDTO> {
+public class ResponseCountryDeserialize extends JsonDeserializer<ResponseCountryWorldBankDTO> {
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
     @Override
-    public ResponseCountryDTO deserialize(final JsonParser jsonParser, final DeserializationContext deserializationContext) throws IOException {
+    public ResponseCountryWorldBankDTO deserialize(final JsonParser jsonParser, final DeserializationContext deserializationContext) throws IOException {
         final var objectCodec = jsonParser.getCodec();
         final var treeNode = (JsonNode) objectCodec.readTree(jsonParser);
 
@@ -31,7 +31,7 @@ public class ResponseCountryDeserialize extends JsonDeserializer<ResponseCountry
 
         final var pagination = (LinkedHashMap<String, Object>) json.get(0);
 
-        final var paginationDTO = new PaginationCountryDTO();
+        final var paginationDTO = new PaginationCountryWorldBankDTO();
         paginationDTO.setTotal((Integer) pagination.get("total"));
         paginationDTO.setPerPage((String) pagination.get("per_page"));
         paginationDTO.setPages((Integer) pagination.get("pages"));
@@ -55,7 +55,7 @@ public class ResponseCountryDeserialize extends JsonDeserializer<ResponseCountry
         }).collect(toList());
 
 
-        final var response = new ResponseCountryDTO();
+        final var response = new ResponseCountryWorldBankDTO();
         response.setCountries(countries);
         response.setPagination(paginationDTO);
 

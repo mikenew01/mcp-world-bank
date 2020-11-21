@@ -6,10 +6,10 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.maikoncanuto.domain.dto.ResponseIndicatorDTO;
-import com.github.maikoncanuto.domain.dto.indicator.IndicatorDTO;
-import com.github.maikoncanuto.domain.dto.indicator.IndicatorWorldBankDTO;
-import com.github.maikoncanuto.domain.dto.indicator.PaginationIndicatorDTO;
+import com.github.maikoncanuto.domain.dto.worldbank.indicator.ResponseIndicatorWorldBankDTO;
+import com.github.maikoncanuto.domain.dto.worldbank.indicator.IndicatorItemWorldBankDTO;
+import com.github.maikoncanuto.domain.dto.worldbank.indicator.IndicatorWorldBankDTO;
+import com.github.maikoncanuto.domain.dto.worldbank.indicator.PaginationIndicatorWorldBankDTO;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
@@ -18,12 +18,12 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Stream.of;
 
-public class ResponseIndicatorDeserialize extends JsonDeserializer<ResponseIndicatorDTO> {
+public class ResponseIndicatorDeserialize extends JsonDeserializer<ResponseIndicatorWorldBankDTO> {
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
     @Override
-    public ResponseIndicatorDTO deserialize(final JsonParser jsonParser, final DeserializationContext deserializationContext) throws IOException {
+    public ResponseIndicatorWorldBankDTO deserialize(final JsonParser jsonParser, final DeserializationContext deserializationContext) throws IOException {
         final var treeNode = (JsonNode) jsonParser.getCodec().readTree(jsonParser);
 
         List json = mapper.readerFor(new TypeReference<List<Object>>() {
@@ -31,7 +31,7 @@ public class ResponseIndicatorDeserialize extends JsonDeserializer<ResponseIndic
 
         final var pagination = (LinkedHashMap<String, Object>) json.get(0);
 
-        final var paginationDTO = new PaginationIndicatorDTO();
+        final var paginationDTO = new PaginationIndicatorWorldBankDTO();
         paginationDTO.setTotal((Integer) pagination.get("total"));
         paginationDTO.setPerPage((Integer) pagination.get("per_page"));
         paginationDTO.setLastupdated((String) pagination.get("lastupdated"));
@@ -57,15 +57,15 @@ public class ResponseIndicatorDeserialize extends JsonDeserializer<ResponseIndic
         }).collect(toList());
 
 
-        final var response = new ResponseIndicatorDTO();
+        final var response = new ResponseIndicatorWorldBankDTO();
         response.setIndicators(indicators);
         response.setPagination(paginationDTO);
 
         return response;
     }
 
-    private IndicatorDTO configIndicator(final LinkedHashMap<String, Object> indicatorInterno, final String label) {
-        final var countryIndicator = new IndicatorDTO();
+    private IndicatorItemWorldBankDTO configIndicator(final LinkedHashMap<String, Object> indicatorInterno, final String label) {
+        final var countryIndicator = new IndicatorItemWorldBankDTO();
 
         of((LinkedHashMap<String, Object>) indicatorInterno.get(label)).forEach(variable -> {
             countryIndicator.setId((String) variable.get("id"));

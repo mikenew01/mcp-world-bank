@@ -1,8 +1,8 @@
-package com.github.maikoncanuto.domain.dto.indicator;
+package com.github.maikoncanuto.domain.dto.worldbank.indicator;
 
 import com.github.maikoncanuto.domain.dto.BaseDTO;
 
-public class PaginationIndicatorDTO implements BaseDTO {
+public class PaginationIndicatorWorldBankDTO implements BaseDTO {
 
     private Integer page;
     private Integer pages;

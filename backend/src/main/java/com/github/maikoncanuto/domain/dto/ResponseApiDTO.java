@@ -1,5 +1,7 @@
 package com.github.maikoncanuto.domain.dto;
 
+import com.github.maikoncanuto.domain.dto.BaseDTO;
+
 public class ResponseApiDTO implements BaseDTO {
 
     private String code;

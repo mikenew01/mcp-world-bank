@@ -1,7 +1,7 @@
 package com.github.maikoncanuto.integration;
 
-import com.github.maikoncanuto.domain.dto.ResponseCountryDTO;
-import com.github.maikoncanuto.domain.dto.ResponseIndicatorDTO;
+import com.github.maikoncanuto.domain.dto.worldbank.country.ResponseCountryWorldBankDTO;
+import com.github.maikoncanuto.domain.dto.worldbank.indicator.ResponseIndicatorWorldBankDTO;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -16,10 +16,10 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 public interface IWorldBankCountryClient {
 
     @GET
-    ResponseCountryDTO getCountries(@QueryParam("format") String format);
+    ResponseCountryWorldBankDTO getCountries(@QueryParam("format") String format);
 
     @GET
     @Path("/{id}/indicator/SI.POV.DDAY")
-    ResponseIndicatorDTO getIndicators(@PathParam("id") String id, @QueryParam("format") String format);
+    ResponseIndicatorWorldBankDTO getIndicators(@PathParam("id") String id, @QueryParam("format") String format);
 
 }

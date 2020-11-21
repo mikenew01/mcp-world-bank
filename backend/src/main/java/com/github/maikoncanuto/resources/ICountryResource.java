@@ -14,10 +14,10 @@ import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Path("/countries")
+@Path("/paises")
 @Consumes(APPLICATION_JSON)
 @Produces(APPLICATION_JSON)
-@Tag(name = "Countries", description = "Endpoints para acessar informações de paises na base dados do World Bank")
+@Tag(name = "Paises", description = "Endpoints para acessar informações de paises na base dados do World Bank")
 public interface ICountryResource {
 
     @GET

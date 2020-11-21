@@ -1,23 +1,22 @@
-package com.github.maikoncanuto.domain.dto;
+package com.github.maikoncanuto.domain.dto.worldbank.indicator;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.github.maikoncanuto.domain.deserialize.ResponseIndicatorDeserialize;
-import com.github.maikoncanuto.domain.dto.indicator.IndicatorWorldBankDTO;
-import com.github.maikoncanuto.domain.dto.indicator.PaginationIndicatorDTO;
+import com.github.maikoncanuto.domain.dto.BaseDTO;
 
 import java.util.List;
 
 @JsonDeserialize(using = ResponseIndicatorDeserialize.class)
-public class ResponseIndicatorDTO implements BaseDTO {
+public class ResponseIndicatorWorldBankDTO implements BaseDTO {
 
-    private PaginationIndicatorDTO pagination;
+    private PaginationIndicatorWorldBankDTO pagination;
     private List<IndicatorWorldBankDTO> indicators;
 
-    public PaginationIndicatorDTO getPagination() {
+    public PaginationIndicatorWorldBankDTO getPagination() {
         return pagination;
     }
 
-    public void setPagination(PaginationIndicatorDTO pagination) {
+    public void setPagination(PaginationIndicatorWorldBankDTO pagination) {
         this.pagination = pagination;
     }
 
