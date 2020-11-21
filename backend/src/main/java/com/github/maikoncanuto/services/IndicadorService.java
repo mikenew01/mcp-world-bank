@@ -22,15 +22,18 @@ import static javax.transaction.Transactional.TxType.NOT_SUPPORTED;
 @Audit
 @ApplicationScoped
 @Transactional(NOT_SUPPORTED)
-public class IndicatorService {
+public class IndicadorService {
 
     @Inject
     @RestClient
     IWorldBankCountryClient worldBankCountryClient;
 
     @CacheResult(cacheName = CACHE_INDICATORS_WORLD_BANK)
-    public ResponseIndicadorDTO findIndicatorsByIdInWorldBank(final String codigoPais) {
-        final var indicators = worldBankCountryClient.getIndicators(codigoPais, JSON);
+    public ResponseIndicadorDTO findIndicatorsByIdInWorldBank(final String codigoPais, final PaginacaoDTO paginacaoParametro) {
+        final var indicators = worldBankCountryClient.getIndicators(codigoPais,
+                JSON,
+                paginacaoParametro.getPaginaAtual(),
+                paginacaoParametro.getPorPagina());
 
         final var paginacao = new PaginacaoDTO();
         paginacao.setPaginaAtual(indicators.getPagination().getPage());
@@ -39,15 +42,15 @@ public class IndicatorService {
         paginacao.setTotal(indicators.getPagination().getTotal());
 
         final var indicadores = indicators.getIndicators().stream().filter(Objects::nonNull).map(indicatorWorldBankDTO -> {
-                    final var indicador = new IndicadorDTO();
-                    indicador.setCodigoPais(indicatorWorldBankDTO.getCountryIso3Code());
-                    indicador.setDataAno(Integer.parseInt(indicatorWorldBankDTO.getDate()));
-                    indicador.setNomePais(indicatorWorldBankDTO.getCountry().getValue());
-                    indicador.setIndicador(indicatorWorldBankDTO.getIndicator().getValue());
-                    indicador.setCodigoIndicador(indicatorWorldBankDTO.getIndicator().getId());
+            final var indicador = new IndicadorDTO();
+            indicador.setCodigoPais(indicatorWorldBankDTO.getCountryIso3Code());
+            indicador.setDataAno(Integer.parseInt(indicatorWorldBankDTO.getDate()));
+            indicador.setNomePais(indicatorWorldBankDTO.getCountry().getValue());
+            indicador.setIndicador(indicatorWorldBankDTO.getIndicator().getValue());
+            indicador.setCodigoIndicador(indicatorWorldBankDTO.getIndicator().getId());
 
-                    return indicador;
-                }).sorted(comparing(IndicadorDTO::getDataAno)).collect(toList());
+            return indicador;
+        }).sorted(comparing(IndicadorDTO::getDataAno)).collect(toList());
 
         final var responseIndicador = new ResponseIndicadorDTO();
         responseIndicador.setPaginacao(paginacao);

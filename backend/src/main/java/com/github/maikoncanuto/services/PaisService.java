@@ -22,7 +22,7 @@ import static javax.transaction.Transactional.TxType.NOT_SUPPORTED;
 @Audit
 @ApplicationScoped
 @Transactional(NOT_SUPPORTED)
-public class CountryService {
+public class PaisService {
 
     @Inject
     @RestClient
@@ -30,8 +30,10 @@ public class CountryService {
 
 
     @CacheResult(cacheName = CACHE_COUNTRIES_WORLD_BANK)
-    public ResponsePaisDTO findCountriesInWorldBank() {
-        final var countries = worldBankCountryClient.getCountries(JSON);
+    public ResponsePaisDTO findCountriesInWorldBank(final PaginacaoDTO paginacaoParametro) {
+        final var countries = worldBankCountryClient.getCountries(JSON,
+                paginacaoParametro.getPorPagina().toString(),
+                paginacaoParametro.getPaginaAtual());
 
         final var paginacao = new PaginacaoDTO();
         paginacao.setTotal(countries.getPagination().getTotal());

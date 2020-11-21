@@ -16,10 +16,15 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 public interface IWorldBankCountryClient {
 
     @GET
-    ResponseCountryWorldBankDTO getCountries(@QueryParam("format") String format);
+    ResponseCountryWorldBankDTO getCountries(@DefaultValue("json") @QueryParam("format") String format,
+                                             @DefaultValue("50") @QueryParam("per_page") final String perPage,
+                                             @QueryParam("page") final Integer page);
 
     @GET
     @Path("/{id}/indicator/SI.POV.DDAY")
-    ResponseIndicatorWorldBankDTO getIndicators(@PathParam("id") String id, @QueryParam("format") String format);
+    ResponseIndicatorWorldBankDTO getIndicators(@PathParam("id") final String id,
+                                                @DefaultValue("json") @QueryParam("format") final String format,
+                                                @QueryParam("page") final Integer page,
+                                                @QueryParam("per_page") final Integer perPage);
 
 }

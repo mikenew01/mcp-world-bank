@@ -1,13 +1,11 @@
 package com.github.maikoncanuto.domain.dto;
 
-import com.github.maikoncanuto.domain.dto.BaseDTO;
-
 public class PaginacaoDTO implements BaseDTO {
 
-    private Integer paginaAtual;
-    private Integer quantidadePaginas;
-    private Integer total;
-    private Integer porPagina;
+    private Integer paginaAtual = 0;
+    private Integer quantidadePaginas = 0;
+    private Integer total = 0;
+    private Integer porPagina = 0;
 
     public Integer getPaginaAtual() {
         return paginaAtual;

@@ -16,7 +16,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 @Consumes(APPLICATION_JSON)
 @Produces(APPLICATION_JSON)
 @Tag(name = "Indicadores", description = "Endpoints para acessar informações de indicadores na base dados do World Bank")
-public interface IIndicatorResource {
+public interface IIndicadorResource {
 
     @GET
     @Path("/{codigoPais}")
@@ -29,6 +29,8 @@ public interface IIndicatorResource {
     )
     @APIResponse(name = "OK", responseCode = "200", description = "Requisição completada com sucesso")
     @APIResponse(name = "Internal Server Error", responseCode = "500", description = "Ocorreu um problema interno no servidor")
-    Response findIndicatorsByIdInWorldBank(@PathParam("codigoPais") @NotNull final String codigoPais);
+    Response findIndicatorsByIdInWorldBank(@PathParam("codigoPais") @NotNull final String codigoPais,
+                                           @QueryParam("paginaAtual") final Integer paginaAtual,
+                                           @DefaultValue("50") @QueryParam("porPagina") final Integer porPagina);
 
 }
