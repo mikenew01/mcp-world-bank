@@ -1,4 +1,6 @@
-package com.github.maikoncanuto.domain.dto;
+package com.github.maikoncanuto.domain.dto.country;
+
+import com.github.maikoncanuto.domain.dto.BaseDTO;
 
 public class RegionDTO implements BaseDTO {
 

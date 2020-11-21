@@ -1,8 +1,9 @@
-package com.github.maikoncanuto.domain.dto;
+package com.github.maikoncanuto.domain.dto.country;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.maikoncanuto.domain.dto.BaseDTO;
 
-public class PaginationDTO implements BaseDTO {
+public class PaginationCountryDTO implements BaseDTO {
 
     private Integer page;
 

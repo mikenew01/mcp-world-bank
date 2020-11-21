@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.maikoncanuto.domain.dto.CountryDTO;
-import com.github.maikoncanuto.domain.dto.PaginationDTO;
+import com.github.maikoncanuto.domain.dto.country.CountryWorldBankDTO;
+import com.github.maikoncanuto.domain.dto.country.PaginationCountryDTO;
 import com.github.maikoncanuto.domain.dto.ResponseCountryDTO;
 
 import java.io.IOException;
@@ -31,7 +31,7 @@ public class ResponseCountryDeserialize extends JsonDeserializer<ResponseCountry
 
         final var pagination = (LinkedHashMap<String, Object>) json.get(0);
 
-        final var paginationDTO = new PaginationDTO();
+        final var paginationDTO = new PaginationCountryDTO();
         paginationDTO.setTotal((Integer) pagination.get("total"));
         paginationDTO.setPerPage((String) pagination.get("per_page"));
         paginationDTO.setPages((Integer) pagination.get("pages"));
@@ -40,7 +40,7 @@ public class ResponseCountryDeserialize extends JsonDeserializer<ResponseCountry
         final var estados = (List<LinkedHashMap<String, Object>>) json.get(1);
 
         final var countries = estados.stream().map(item -> {
-            final var country = new CountryDTO();
+            final var country = new CountryWorldBankDTO();
 
             of(item).forEach(countryInterno -> {
                 country.setName((String) countryInterno.get("name"));

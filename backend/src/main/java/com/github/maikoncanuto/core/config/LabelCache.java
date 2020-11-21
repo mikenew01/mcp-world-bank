@@ -6,6 +6,7 @@ public class LabelCache {
     }
 
     public static final String CACHE_COUNTRIES_WORLD_BANK = "cache-countries-world-bank";
+    public static final String CACHE_INDICATORS_WORLD_BANK = "cache-indicators-world-bank";
 
 
 }

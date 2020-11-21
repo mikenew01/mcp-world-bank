@@ -1,8 +1,9 @@
-package com.github.maikoncanuto.domain.dto;
+package com.github.maikoncanuto.domain.dto.country;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.maikoncanuto.domain.dto.BaseDTO;
 
-public class CountryDTO implements BaseDTO {
+public class CountryWorldBankDTO implements BaseDTO {
 
     private String id;
     private String iso2Code;
