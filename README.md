@@ -73,7 +73,6 @@ $ cd mcp-world-bank
 ```
 
 ### Passo 3
-Entre na pasta do backend 
 
 ```shell script
 $ cd backend
@@ -92,6 +91,8 @@ Voltar para pasta raiz
 ```shell script
 $ cd ..
 ```
+
+OBS: Replicar Passo 3, 4 e 5 para o consumer e producer
 
 ### Passo 6
 Execute o comando para levantar toda infraestrutura necessária

@@ -9,7 +9,7 @@ import javax.ws.rs.*;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Path("v1/indicadores")
+@Path("indicadores")
 @ApplicationScoped
 @Produces(APPLICATION_JSON)
 @RegisterRestClient

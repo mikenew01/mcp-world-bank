@@ -11,7 +11,7 @@ import javax.ws.rs.QueryParam;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Path("v1/paises")
+@Path("paises")
 @ApplicationScoped
 @Produces(APPLICATION_JSON)
 @RegisterRestClient

@@ -5,7 +5,7 @@ services:
     build:
       context: ./backend-worldbank-producer/
       dockerfile: src/main/docker/Dockerfile.jvm
-    container_name: backend-producer
+    container_name: bank-backend-producer
     restart: always
     networks:
       - bank_networking
@@ -30,7 +30,7 @@ services:
     build:
       context: ./backend-wordlbank-consumer/
       dockerfile: src/main/docker/Dockerfile.jvm
-    container_name: backend-consumer
+    container_name: bank-backend-consumer
     restart: always
     networks:
       - bank_networking

@@ -11,7 +11,7 @@ import static org.hamcrest.CoreMatchers.*;
 @QuarkusTest
 public class IndicadorResourceTest {
 
-    private static final String PATH_API = "/api/v1/indicadores/";
+    private static final String PATH_API = "/api/v1/indicadores";
 
 
     @Test
@@ -21,7 +21,7 @@ public class IndicadorResourceTest {
                 .queryParam("paginaAtual", 1)
                 .queryParam("porPagina", 2)
                 .when()
-                .get(PATH_API + "{codigoPais}")
+                .get(PATH_API + "/{codigoPais}")
                 .then()
                 .statusCode(200)
                 .body("code", is(valueOf(200)))
