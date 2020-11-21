@@ -1,6 +1,15 @@
-# Bem-vindo ao MCP WorlBank API :money_with_wings:
+# Bem-vindo ao MCP WorlBank API 
 
 Serviço responsável por consultar informações de indicadores e paises das APIs do World Bank
+
+#Desafio
+O Banco Mundial https://www.worldbank.org/ mantém uma série de indicadores econômicos, disponibilizados web, arquivos para download, e APIs.
+Um desses dados é o indicador que avalia a quantidade de pessoas em situação de extrema pobreza no mundo, vivendo com até $ 1,90/dia.
+Este desafio consiste em construir uma aplicação que apresente os indicadores de determinado país (um voz vez), ordenados por ano. 
+A aplicação deve permitir que o usuário digite o código do país para em seguida solicitar os índices históricos. Ou seja, quando o usuário entrar no sistema, irá visualizar um formulário, após o preenchimento e submissão desse, será apresentada uma tabela com o resultado obtido da API do Banco Mundial.
+
+- [X] Backend - API Rest
+- [ ] Frontend
 
 # Introdução Arquitetura 
 Durante o desenvolvimento foram tomadas algumas decisões com relação a tecnologias usadas. O backend foi desenvolvido utilizando o framework 
@@ -52,14 +61,35 @@ $ git clone https://github.com/Maikoncanuto/mcp-world-bank.git mcp-world-bank
 Entre na pasta raiz do projeto
 
 ```shell script
-$ cd mcp-quote
+$ cd mcp-world-bank
 ```
 
 ### Passo 3
+Entre na pasta do backend 
+
+```shell script
+$ cd backend
+```
+
+### Passo 4 
+Executar o comando do maven para gerar o artefato que será publicado no docker
+
+```shell script
+$ cd mvn clean install
+```
+
+### Passo 5
+Voltar para pasta raiz
+
+```shell script
+$ cd ..
+```
+
+### Passo 6
 Execute o comando para levantar toda infraestrutura necessária
 
 ```shell script
-$ docker-compose up 
+$ docker-compose up --build
 ```
 
 Acompanhar logs: 
@@ -67,15 +97,8 @@ Acompanhar logs:
 $ docker-compose logs -f
 ```
 
-### Passo 4
-Execute o comando para instalar as dependências necessárias
-
-```shell script
-$ mvn clean package 
-```
-
-### Passo 5
-Execute o projeto com comando do quarkus
+### OU
+Execute o projeto com comando do quarkus dentro da pasta do backend
 
 ```shell script
 $ ./mvnw compile quarkus:dev
@@ -105,76 +128,18 @@ Grafana | http://localhost:8480 | :white_check_mark: | Monitoramento e Dashboard
 ## Buscar informações de paises
 **Url de requisição:**
 ```
-http://localhost:8080/api/v1/countries
+http://localhost:8080/api/v1/paises
 ```
 **Parametrôs:**
 
-Parâmetro | Formato | Tipo | Descrição | Exemplo
---- | --- | --- | --- | ---  
-Não existe | Não existe  | Não existe  | Não existe  | Não existe 
+Parâmetro | Obrigatorio | Formato | Tipo | Descrição | Exemplo
+--- | --- | --- | --- | --- | ---  
+paginaAtual | Opcional  | X  | number  | Número da página para exibição | 2
+porPagina | Opcional | X | number | Número de itens por página | 50 
 
 **Curl:**
 ```shell script
-curl -X GET "http://localhost:8080/api/v1/countries" -H  "accept: */*"
-```
-
-**Retorno:**
-``` json
-{
-  {
-    "code": "200",
-    "data": {
-      "pagination": {
-        "page": 1,
-        "pages": 7,
-        "total": 304,
-        "per_page": "50"
-      },
-    "countries": [
-        {
-          "id": "ABW",
-          "iso2Code": "AW",
-          "name": "Aruba",
-          "region": null,
-          "incomeLevel": null,
-          "lendingType": null,
-          "capitalCity": "Oranjestad",
-          "longitude": "-70.0167",
-          "latitude": "12.5167",
-          "adminregion": null
-        },
-        {
-          "id": "AFG",
-          "iso2Code": "AF",
-          "name": "Afghanistan",
-          "region": null,
-          "incomeLevel": null,
-          "lendingType": null,
-          "capitalCity": "Kabul",
-          "longitude": "69.1761",
-          "latitude": "34.5228",
-          "adminregion": null
-        }
-    ],
-    "erro": null 
-}
-```
----
-
-## /api/v1/indicators/{id}
-**Url de requisição:**
-```
-http://localhost:8080/api/v1/indicators/ABW
-```
-**Parametrôs Query:**
-
-Parâmetro | Formato | Tipo | Descrição | Exemplo
---- | --- | --- | --- | ---  
-id | XXX| string | Código do pais | ABW
-
-**Curl:**
-```shell script
-curl -X GET "http://localhost:8080/api/v1/indicators/ABW" -H  "accept: */*"
+curl -X GET "http://localhost:8080/api/v1/paises?paginaAtual=1&porPagina=50" -H  "accept: */*"
 ```
 
 **Retorno:**
@@ -182,32 +147,82 @@ curl -X GET "http://localhost:8080/api/v1/indicators/ABW" -H  "accept: */*"
 {
   "code": "200",
   "data": {
-    "pagination": {
-      "page": 1,
-      "pages": 2,
-      "total": 61,
-      "perPage": 50,
-      "sourceId": "2",
-      "lastupdated": "2020-10-15"
+    "paginacao": {
+      "paginaAtual": 1,
+      "quantidadePaginas": 7,
+      "total": 304,
+      "porPagina": 50
     },
-    "indicators": [
+    "paises": [
       {
-        "indicator": {
-          "id": "SI.POV.DDAY",
-          "value": "Poverty headcount ratio at $1.90 a day (2011 PPP) (% of population)"
-        },
-        "country": {
-          "id": "AW",
-          "value": "Aruba"
-        },
-        "countryIso3Code": "ABW",
-        "date": "2020",
-        "value": null,
-        "unit": "",
-        "obsStatus": "",
-        "decimal": 1
+        "codigoPais": "ABW",
+        "nome": "Aruba",
+        "capital": "Oranjestad"
+      },
+      {
+        "codigoPais": "AFG",
+        "nome": "Afghanistan",
+        "capital": "Kabul"
+      },
+      {
+        "codigoPais": "AFR",
+        "nome": "Africa",
+        "capital": ""
       }
-  ],
+    ]
+   },
+   "erro": null 
+}
+```
+---
+
+## /api/v1/indicators/{id}
+**Url de requisição:**
+```
+http://localhost:8080/api/v1/indicadores/ABW
+```
+**Parametrôs Query:**
+
+Parâmetro | Obrigatorio |Formato | Tipo | Descrição | Exemplo
+--- | --- | --- | --- | --- | ---  
+codigoPais | Obrigatorio | XXX | string | Código do pais | ABW
+paginaAtual | Opcional  | X  | number  | Número da página para exibição | 2
+porPagina | Opcional | X | number | Número de itens por página | 50 
+
+
+**Curl:**
+```shell script
+curl -X GET "http://localhost:8080/api/v1/indicadores/ABW?paginaAtual=1&porPagina=50" -H  "accept: */*"
+```
+
+**Retorno:**
+``` json
+{
+  "code": "200",
+  "data": {
+    "paginacao": {
+      "paginaAtual": 1,
+      "quantidadePaginas": 2,
+      "total": 61,
+      "porPagina": 50
+    },
+    "indicadores": [
+      {
+        "dataAno": 1971,
+        "codigoPais": "ABW",
+        "nomePais": "Aruba",
+        "indicador": "Poverty headcount ratio at $1.90 a day (2011 PPP) (% of population)",
+        "codigoIndicador": "SI.POV.DDAY"
+      },
+      {
+        "dataAno": 1972,
+        "codigoPais": "ABW",
+        "nomePais": "Aruba",
+        "indicador": "Poverty headcount ratio at $1.90 a day (2011 PPP) (% of population)",
+        "codigoIndicador": "SI.POV.DDAY"
+      }
+      ]
+    },
   "erro": null 
 }
 ```
