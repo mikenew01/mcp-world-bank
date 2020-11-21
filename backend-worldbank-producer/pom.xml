@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.maikoncanuto</groupId>
-  <artifactId>worldbank</artifactId>
+  <artifactId>worldbank-producer</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <properties>
     <surefire-plugin.version>2.22.1</surefire-plugin.version>

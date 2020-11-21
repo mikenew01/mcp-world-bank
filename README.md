@@ -11,6 +11,14 @@ A aplicação deve permitir que o usuário digite o código do país para em seg
 - [X] Backend - API Rest
 - [ ] Frontend
 
+# Estrutura dos microservices
+
+As nomenclaturas 'producer' e ' consumer' são para facilitar o entendimento do projeto e demostração de como consumir 
+outro microservice na arquitetura.
+
+- backend-worldbank-producer: Responsável por acessar API do WorldBank.
+- bakcend-worldbank-consumer: Responsável por consumir API do Producer. 
+
 # Introdução Arquitetura 
 Durante o desenvolvimento foram tomadas algumas decisões com relação a tecnologias usadas. O backend foi desenvolvido utilizando o framework 
 [Quarkus](https://quarkus.io/) por questões de produtividade e desempenho em relação a outras arquiteturas.
@@ -112,9 +120,11 @@ java -jar target/worldbank-0.0.1-SNAPSHOT-runner.jar
 
 # Serviços do mcp-quote-api
 
+Todos os endpoints informados abaixo servem para o microservice de produtor e consumidor nas respectivas portas [8080, 8081]
+
 Serviço | URL | Status | Descrição
 --- | --- | --- | ---
-Swagger | http://localhost:8080/swagger-ui/#/ | :white_check_mark: | Informação dos endpoints na aplicação
+Swagger Producer | http://localhost:8080/swagger-ui/#/ | :white_check_mark: | Informação dos endpoints na aplicação
 Health Live | http://localhost:8080/health/live | :white_check_mark: | Responsável por identificar a sáude da aplicação
 Health Ready | http://localhost:8080/health/ready | :white_check_mark: | Responsável por identificar se aplicação está pronta para uso
 Jaeger | http://localhost:8180 | :white_check_mark: | Rastreamento de requisições
